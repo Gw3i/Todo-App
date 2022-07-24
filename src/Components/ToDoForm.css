@@ -1,0 +1,11 @@
+@import "./button.css";
+
+.todo-form {
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+}
+
+.todo-form__input {
+  margin: 0 10px;
+}
