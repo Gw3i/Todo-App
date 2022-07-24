@@ -29,7 +29,7 @@ function App() {
     <section className="List-section">
       <Headline headlineText="ToDo-App"></Headline>
       <ToDoForm onListItemsInput={handleListItemsInput} />
-      <ToDoList toDoListItems={toDoListItems} />
+      <ToDoList toDoListItems={toDoListItems} setToDoListItems={setToDoListItems}/>
     </section>
   );
 }
