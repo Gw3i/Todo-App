@@ -14,8 +14,8 @@ export default function ToDoList({ toDoListItems, setToDoListItems }) {
                   toDoListItems.map((chechedListItem) => {
                     return chechedListItem.id === listItem.id
                       ? {
-                          ...chechedListItem,
-                          checked: !chechedListItem.checked,
+                          ...listItem,
+                          checked: !listItem.checked,
                         }
                       : chechedListItem;
                   })
@@ -24,7 +24,7 @@ export default function ToDoList({ toDoListItems, setToDoListItems }) {
             />
 
             <span
-              style={{ textDecoration: listItem.checked && "line-through" }}
+              style={{ textDecoration: listItem.checked && "line-through"}}
             >
               {listItem.todo}
             </span>
