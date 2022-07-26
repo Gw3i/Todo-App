@@ -1,4 +1,5 @@
 import "./ToDoList.css";
+import "./button.css";
 export default function ToDoList({ toDoListItems, setToDoListItems }) {
   return (
     <ul className="todo-list">
@@ -24,10 +25,11 @@ export default function ToDoList({ toDoListItems, setToDoListItems }) {
             />
 
             <span
-              style={{ textDecoration: listItem.checked && "line-through"}}
+              style={{ textDecoration: listItem.checked && "line-through" }}
             >
               {listItem.todo}
             </span>
+            <button className="delete-button">X</button>
           </li>
         );
       })}

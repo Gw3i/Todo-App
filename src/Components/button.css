@@ -10,3 +10,17 @@
 .button:hover {
   background-color: lightblue;
 }
+
+.delete-button {
+  border: 0;
+  background: none;
+  position: relative;
+  bottom: 1.5px;
+  margin-left: 10px;
+}
+
+.delete-button:hover {
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 2px;
+}
