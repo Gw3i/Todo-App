@@ -29,7 +29,18 @@ export default function ToDoList({ toDoListItems, setToDoListItems }) {
             >
               {listItem.todo}
             </span>
-            <button className="delete-button">X</button>
+            <button
+              className="delete-button"
+              onClick={() => {
+                setToDoListItems(
+                  toDoListItems.filter(
+                    (listItem_) => listItem_.id !== listItem.id
+                  )
+                );
+              }}
+            >
+              X
+            </button>
           </li>
         );
       })}
