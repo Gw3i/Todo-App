@@ -8,12 +8,12 @@ import { nanoid } from "nanoid";
 import React, { useState, useEffect } from "react";
 
 function App() {
-  const [toDoListItems, setToDoListItems] = useState([
-    { id: nanoid(), todo: "Einkaufen gehen", checked: false },
-    { id: nanoid(), todo: "Sport machen", checked: false },
-    { id: nanoid(), todo: "Blumen gießen", checked: false },
-    { id: nanoid(), todo: "Gitarre spielen", checked: false },
-  ]);
+  const [toDoListItems, setToDoListItems] = useState(
+    loadFromLocalStorage("toDo-List") ?? [
+      { id: nanoid(), todo: "Einkaufen gehen", checked: false },
+      { id: nanoid(), todo: "Sport machen", checked: false },
+    ]
+  );
 
   function handleListItemsInput(inputValue) {
     setToDoListItems([
@@ -24,6 +24,25 @@ function App() {
         checked: false,
       },
     ]);
+  }
+
+  useEffect(() => {
+    saveToLocalStorage("toDo-List", toDoListItems);
+  }, [toDoListItems]);
+
+  useEffect(() => {
+    loadFromLocalStorage(toDoListItems);
+  }, [toDoListItems]);
+
+  function saveToLocalStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+  function loadFromLocalStorage(key) {
+    try {
+      return JSON.parse(localStorage.getItem(key));
+    } catch (error) {
+      console.error("Can't load from local Storage");
+    }
   }
 
   const [beerList, setBeerList] = useState([{ id: nanoid(), name: "Buzz" }]);
