@@ -5,8 +5,8 @@ import ToDoList from "./Components/ToDoList";
 import FetchRecipes from "./Components/FetchRecipes";
 import { nanoid } from "nanoid";
 import { saveToLocalStorage, loadFromLocalStorage } from "./lib/localStorage";
-
 import React, { useState, useEffect } from "react";
+import useFetch from "./lib/useFetch";
 
 function App() {
   const [toDoListItems, setToDoListItems] = useState(
@@ -35,19 +35,29 @@ function App() {
     loadFromLocalStorage(toDoListItems);
   }, [toDoListItems]);
 
+  //////////// BEER LIST /////////////////
+
   const [beerList, setBeerList] = useState([{ id: nanoid(), name: "Buzz" }]);
 
-  useEffect(() => {
-    loadBeer();
-  }, []);
+  const beerURL = "https://api.punkapi.com/v2/beers";
 
-  async function loadBeer() {
-    const response = await fetch("https://api.punkapi.com/v2/beers");
-    if (response.ok) {
-      const data = await response.json();
-      setBeerList(data);
-    }
-  }
+  const [data] = useFetch(beerURL);
+
+  useEffect(() => {
+    setBeerList(data);
+  }, [data]);
+
+  // useEffect(() => {
+  //   loadBeer();
+  // }, []);
+
+  // async function loadBeer() {
+  //   const response = await fetch("https://api.punkapi.com/v2/beers");
+  //   if (response.ok) {
+  //     const data = await response.json();
+  //     setBeerList(data);
+  //   }
+  // }
 
   return (
     <section className="List-section">

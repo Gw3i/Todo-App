@@ -7,6 +7,7 @@ export default function ToDoForm({ onListItemsInput }) {
   function getValue(event) {
     event.preventDefault();
     onListItemsInput(inputValue);
+    setInputValue("");
   }
 
   return (
